@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
+        rel="stylesheet">
+    <script src="script2.js" defer></script>
+</head>
+
+<body>
+    <div id="namePrompt" class="overlay">
+        <div class="prompt-content">
+            <h2>Name your pet</h2>
+            <input type="text" id="petName" placeholder="Enter pet name" maxlength="20">
+            <button id="startGame">Start Game</button>
+        </div>
+    </div>
+    <main>
+        <div class="game">
+            <div>
+                <h1>Name</h1>
+                <div class="box">
+                    <img src="creaturenutre.svg" alt="Happy face made of spiral eyes and a smile." id="petImage" loading="lazy">
+                </div>
+                <div class="box">
+                    <div id="headOrTailGame" style="display: none;">
+                        <img src="coinhead.png" id="resultIMG">
+                        <p id="resultText"></p>
+                        <div>
+                            <button id="btnPH">Head</button>
+                            <button id="btnPT">Tails</button>
+                        </div>
+                    </div>
+                    <button id="playGameBtn">Play</button>
+                    <button id="backBtn" style="display: none;">Back</button>
+                </div>
+            </div>
+
+            <div id="hud">
+                <div class="stats">
+                    <div id="labels">
+                        <div>Health</div>
+                        <div>Hunger</div>
+                        <div>Sleep</div>
+                    </div>
+
+                    <div class="needMeters">
+                        <div id="mtrH" class="health"></div>
+                        <div id="mtrF" class="food"></div>
+                        <div id="mtrS" class="sleep"></div>
+                    </div>
+                    <div id="buttons">
+                        <div></div>
+                        <div id="btnF" class="feedBtn">Feed</div>
+                        <div id="btnS" class="sleepBtn">Sleep</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="walletSection">
+            <span id="wallet">Wallet: $0</span>
+            <button id="tutorialBtn">Tutorial</button>
+        </div>
+
+        <div id="tutorialPanel" style="display: none;">
+            <h3>How to Play</h3>
+            <ul>
+                <li>Feed your pet regularly to keep it healthy</li>
+                <li>Feeding costs 5 coins each time</li>
+                <li>Earn coins by playing the Head or Tails mini-game</li>
+                <li>You can let your pet sleep. It also pauses hunger</li>
+                <li>Your pet will regain health while sleeping enough</li>
+            </ul>
+            <button id="closeTutorial">Close</button>
+        </div>
+        <!--<div id="killBtn">Remove Oxygen</div>-->
+        <div id="feedback"></div>
+
+    </main>
+</body>
+
+</html>

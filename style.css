@@ -1,0 +1,313 @@
+* {
+    font-family: "Winky Rough", sans-serif;
+}
+
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    color: #001514;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    background-color: #f5ffe9;
+    margin: 0;
+    height: 100%;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.prompt-content {
+    background-color: #f5ffe9;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    border: solid 5px #383c61;
+}
+
+#petName {
+    padding: 8px;
+    margin: 10px 0;
+    border: 2px solid #419ac6;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 200px;
+}
+
+#startGame {
+    background-color: #FAC852;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#startGame:hover {
+    background-color: #eab53a;
+}
+
+.winky-rough {
+    font-family: "Winky Rough", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+h1 {
+    margin-top: 0;
+    text-align: center
+}
+
+.game {
+    display: flex;
+    flex: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+} 
+
+.box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    height: 240px;
+    width: 240px;
+    background-color: #419ac6;
+    border: solid 20px #383c61;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+#petImage {
+    max-height: 300px;
+}
+
+#hud {
+    position: absolute;
+    right: 80px;
+    top: 25%;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.stats {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#labels {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#labels > div {
+    height: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+/* needMeters */
+.needMeters > div {
+    height: 30px;
+}
+
+#mtrH {
+    background-color: #81F781;
+    border: 1px solid #81F781;
+    margin-bottom: 10px;
+}
+
+#mtrF {
+    background-color: #FAC852;
+    border: 1px solid #FAC852;
+    margin-bottom: 10px;
+}
+
+#mtrS {
+    background-color: #419AC6;
+    border: 1px solid #419AC6;
+}
+
+#buttons {
+    position: absolute;
+    right: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 60px;
+    height: 100%;
+    gap: 10px;
+}
+
+#buttons > div {
+    height: 27px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    padding: 3px 8px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.feedBtn {
+    background-color: #FAC852;
+    color: #001514;
+}
+
+.feedBtn:hover {
+    background-color: #eab53a; /* Slightly darker shade on hover */
+}
+
+.sleepBtn {
+    background-color: #419AC6;
+    color: #001514;
+}
+
+.sleepBtn:hover {
+    background-color: #2e8cbb;
+}
+
+#resultIMG {
+    width: 100px;
+    margin-bottom: 2px;
+}
+
+/*#killBtn {
+    height: 27px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    padding: 3px 4px;
+    background-color: #001514;
+    color:#f5ffe9;
+    margin-top: 20px;
+}*/
+
+#feedback {
+    color :#001514;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#headOrTailGame {
+    display: none;
+    text-align: center;
+    margin-top: 5px;
+}
+
+#playGameBtn, #backBtn {
+    height: 30px;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    background-color: #FAC852;
+    color: #001514;
+    font-weight: bold;
+}
+
+#playGameBtn:hover, #backBtn:hover {
+    background-color: #eab53a;
+}
+
+#backBtn {
+    display: none;
+    margin-top: 2px;
+}
+
+#btnPH, #btnPT {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #FAC852;
+    color: #001514;
+    font-weight: bold;
+}
+
+#wallet {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #FAC852;
+    color: #001514;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+#tutorialPanel {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background: white;
+    border: 2px solid #001514;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+#tutorialPanel ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+#tutorialBtn {
+    position: absolute;
+    top: 10px;
+    right: 8%;
+    background-color: #FAC852;
+    border: 1px solid #FAC852;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    color: #001514;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#closeTutorial {
+    color: #001514;
+    background-color: #FAC852;
+    border: 1px solid #FAC852;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+}
+

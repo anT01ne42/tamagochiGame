@@ -32,8 +32,8 @@ document.querySelector('.game').style.visibility = 'hidden';
 //pet's stats are health and food. max stats and current stats. + intervals of time for losing each stats.
 statsMax = 30
 let intervalH = 3000
-let intervalF = 8000
-let intervalS = 12000
+let intervalF = 5000
+let intervalS = 10000
 
 let statsF = statsMax
 let statsH = statsMax
@@ -78,6 +78,13 @@ backBtn.addEventListener('click', () => {
     backBtn.style.display = 'none';
 });
 
+//function to clear all intervals
+function clearAllIntervals() {
+    clearInterval(healthInterval);
+    clearInterval(hungerInterval);
+    clearInterval(sleepInterval);
+}
+
 //general game functions
 function game() {
 
@@ -89,13 +96,6 @@ function game() {
         if (alive) {
             requestAnimationFrame(updateMeters); //smoother animation
         }
-    }
-
-    //function to clear all intervals
-    function clearAllIntervals() {
-        clearInterval(healthInterval);
-        clearInterval(hungerInterval);
-        clearInterval(sleepInterval);
     }
 
     function restoreNormalState() {
@@ -152,7 +152,7 @@ function game() {
                 return; //exit the function if the pet is sleeping
             }
 
-            if (wallet >= 5) { 
+            if (wallet >= 5 && statsF + pointsF <= statsMax) { 
                 wallet -= 5; 
                 updateWallet(); 
 
@@ -166,8 +166,8 @@ function game() {
                 }
                 console.log("Pet fed! Wallet deducted by 5.");
             } else {
-                console.log("Not enough money in the wallet to feed the pet!");
-                Message.innerHTML = "Not enough money in the wallet to feed the pet!";
+                console.log("Pet not hungry or not enough money in the wallet!");
+                Message.innerHTML = "Pet not hungry or not enough money in the wallet!";
                 setTimeout(() => {
                     Message.innerHTML = "";
                 }, 2000);
@@ -179,7 +179,7 @@ function game() {
     //function to call with the sleep button : puts the pet to sleep, restores health and sleep, pauses the hunger interval
     //if the hunger was low enough to hurt the pet, it will stop losing health
     function sleep() {
-        if (alive == true) {
+        if (alive === true) {
             getPet.src = "creaturezzz.svg";
 
             clearAllIntervals();
@@ -207,18 +207,21 @@ function game() {
 
     //sleep button event listener, calls sleep function and clicking again will wake the pet up
     getBtnS.addEventListener("click", function () {
-        if (alive == true) {
+        if (alive === true) {
             const petState = getPet.src.split("/").pop();
             if (petState === "creaturezzz.svg") {
                 getBtnS.innerHTML = "Sleep";
                 //console.log("Waking up...");
                 Message.innerHTML = "";
+                clearAllIntervals(); 
                 restoreNormalState();
+                statsS = Math.min(statsS, statsMax); 
+                requestAnimationFrame(updateMeters);
             } else {
                 getBtnS.innerHTML = "Wake";
                 sleep();
             }
-        } else return;
+        }
     });
 
 
@@ -237,6 +240,7 @@ function game() {
     //function to display the losing div
     function ending() {
         getPet.src = "creatureded.svg";
+        clearAllIntervals();
         console.log("You Lost.");
         Message.innerHTML = "Your creature is dead! Refresh the page to play again!";
     }

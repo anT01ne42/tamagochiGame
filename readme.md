@@ -85,3 +85,9 @@ The pet has different visual states shown through SVG images:
 - Add a save/load feature to retain pet stats and coins
 - Implement different color palettes
 - Implement sound effects
+
+### Original plan
+![Maquette](maquette.png)
+
+### Plan with more ideas
+![MaquetteFuture](maquettev2.png)

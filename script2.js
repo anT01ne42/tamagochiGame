@@ -1,21 +1,62 @@
+/** tamagotchiGame
+ toine
+
+ edits:
+ Was missing 'let'/'const' and semicolons on declarations
+ Bad frenglish
+ Redundancy, checking for non-existing elements in DOM and potential loop without cancellation
+ */
+
 //get stats (health, hunger, sleep) + their styles
-getHealth = document.getElementById('mtrH')
-getHunger = document.getElementById('mtrF')
-getSleep = document.getElementById('mtrS')
-let getStyleH = getHealth.style
-let getStyleF = getHunger.style
-let getStyleS = getSleep.style
+let getHealth = document.getElementById('mtrH');
+let getHunger = document.getElementById('mtrF');
+let getSleep = document.getElementById('mtrS');
+let getStyleH = getHealth.style;
+let getStyleF = getHunger.style;
+let getStyleS = getSleep.style;
 //get feed and sleep buttons
-getBtnF = document.getElementById('btnF')
-getBtnS = document.getElementById('btnS')
+let getBtnF = document.getElementById('btnF')
+let getBtnS = document.getElementById('btnS')
 //mess
-Message = document.getElementById('feedback')
+let Message = document.getElementById('feedback');
 //get creature image
-let getPet = document.getElementById('petImage')
+let getPet = document.getElementById('petImage');
+
+//function to update pet image and alt text based on state
+function updatePetImage(state) {
+    //stores current state of getPetState function
+    getPet.dataset.state = state;
+
+    switch(state) {
+        case 'normal':
+            getPet.src = "creaturenutre.svg";
+            getPet.alt = "Happy face made of spiral eyes and a smile.";
+            break;
+        case 'hungry':
+            getPet.src = "creatureohno.svg";
+            getPet.alt = "Sad face made of spiral eyes and a frown.";
+            break;
+        case 'sleeping':
+            getPet.src = "creaturezzz.svg";
+            getPet.alt = "Sleeping face.";
+            break;
+        case 'dead':
+            getPet.src = "creatureded.svg";
+            getPet.alt = "Crossed eyes looking like big 'X'.";
+            break;
+        default:
+            console.error("Unknown pet state:", state);
+    }
+}
+
+//get current pet state
+function getPetState() {
+    return getPet.dataset.state || 'normal';
+}
 //get the kill button (testing purposes)
-getOxygen = document.getElementById('killBtn')
+//const getOxygen = document.getElementById('killBtn');
 //head or tail game
-getCoin = document.getElementById('resultIMG')
+let getCoin = document.getElementById('resultIMG');
 const playGameBtn = document.getElementById('playGameBtn');
 const headOrTailGame = document.getElementById('headOrTailGame');
 const backBtn = document.getElementById('backBtn');
@@ -30,7 +71,7 @@ const petNameDisplay = document.querySelector('h1');
 document.querySelector('.game').style.visibility = 'hidden';
 
 //pet's stats are health and food. max stats and current stats. + intervals of time for losing each stats.
-statsMax = 30
+let statsMax = 30
 let intervalH = 3000
 let intervalF = 5000
 let intervalS = 10000
@@ -42,11 +83,11 @@ let statsS = statsMax
 let alive = true
 let healthInterval, hungerInterval, sleepInterval;
 
-//when food fall below threshold, pet starts losing health
+//when food falls below threshold, pet starts losing health
 let threshold = statsMax * 0.5
 let points = 2
 let pointsF = 10
-let widther = 4
+let wither = 4
 
 //call to lose hunger
 function loseF() {
@@ -90,16 +131,16 @@ function game() {
 
     //function to change the stats meter style (width)
     function updateMeters() {
-        getStyleH.width = statsH * widther + "px";
-        getStyleF.width = statsF * widther + "px";
-        getStyleS.width = statsS * widther + "px";
+        getStyleH.width = statsH * wither + "px";
+        getStyleF.width = statsF * wither + "px";
+        getStyleS.width = statsS * wither + "px";
         if (alive) {
             requestAnimationFrame(updateMeters); //smoother animation
         }
     }
 
     function restoreNormalState() {
-        getPet.src = "creaturenutre.svg";
+        updatePetImage('normal');
 
         //At set intervals, hunger stat decreases (constant).
         //function to decrease hunger
@@ -124,9 +165,9 @@ function game() {
                 if (statsF < threshold) {
                     loseH();
                     //console.log("Creature is hungry!");
-                    getPet.src = "creatureohno.svg";
+                    updatePetImage('hungry');
                 } else {
-                    getPet.src = "creaturenutre.svg";
+                    updatePetImage('normal');
                 }
                 if (statsH <= 0) {
                     alive = false;
@@ -141,9 +182,8 @@ function game() {
 
     //"Feed" button that restores food and health to the pet.
     getBtnF.addEventListener("click", function () {
-        if (alive == true) {
-            const petState = getPet.src.split("/").pop(); //extract current image filename
-            if (petState === "creaturezzz.svg") {
+        if (alive === true) {
+            if (getPetState() === 'sleeping') {
                 console.log("Cannot feed the pet while it's sleeping!");
                 Message.innerHTML = "Cannot feed the pet while it's sleeping!";
                 setTimeout(() => {
@@ -171,16 +211,15 @@ function game() {
                 setTimeout(() => {
                     Message.innerHTML = "";
                 }, 2000);
-            }
-        }
-    });
+            }}
+        });
 
-
-    //function to call with the sleep button : puts the pet to sleep, restores health and sleep, pauses the hunger interval
+    //function to call with the sleep button : puts the pet to sleep, restores health and sleep,
+    // and pauses the hunger interval
     //if the hunger was low enough to hurt the pet, it will stop losing health
     function sleep() {
         if (alive === true) {
-            getPet.src = "creaturezzz.svg";
+            updatePetImage('sleeping');
 
             clearAllIntervals();
 
@@ -208,8 +247,7 @@ function game() {
     //sleep button event listener, calls sleep function and clicking again will wake the pet up
     getBtnS.addEventListener("click", function () {
         if (alive === true) {
-            const petState = getPet.src.split("/").pop();
-            if (petState === "creaturezzz.svg") {
+            if (getPetState() === 'sleeping') { //Same as other, put updatePetImageor the image file
                 getBtnS.innerHTML = "Sleep";
                 //console.log("Waking up...");
                 Message.innerHTML = "";
@@ -239,12 +277,11 @@ function game() {
 
     //function to display the losing div
     function ending() {
-        getPet.src = "creatureded.svg";
+        updatePetImage('dead');
         clearAllIntervals();
         console.log("You Lost.");
         Message.innerHTML = "Your creature is dead! Refresh the page to play again!";
     }
-
 }
 
 //get head and tails elements
@@ -282,6 +319,7 @@ head.addEventListener('click', () => {
     const randomNumber = PileOuFace();
     console.log(randomNumber);
     getCoin.src = "coinhead.png";
+    getCoin.alt = "A yellow coin with a head on it.";
     if (randomNumber < 0.5) {
         result.innerHTML = "Congrats!";
         console.log("You got heads!");
@@ -297,6 +335,7 @@ tails.addEventListener('click', () => {
     const randomNumber = PileOuFace();
     console.log(randomNumber);
     getCoin.src = "cointail.png";
+    getCoin.alt = "A yellow coin with a tail on it.";
     if (randomNumber > 0.5) {
         result.innerHTML = "Congrats!";
         console.log("You got tails!");

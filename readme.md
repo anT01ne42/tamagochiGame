@@ -69,7 +69,7 @@ The pet has different visual states shown through SVG images:
 - Game over message appears
 - Refresh page to restart
 
-## 🛠️ Implementation Notes
+## Implementation Notes
 - Interval-based stat reduction
 - Uses event listeners for button interactions
 - Manages game state through boolean flags

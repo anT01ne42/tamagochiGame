@@ -7,7 +7,6 @@
     <title>My Web Page</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Winky+Rough:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet">
     <script src="script2.js" defer></script>
@@ -17,7 +16,7 @@
     <div id="namePrompt" class="overlay">
         <div class="prompt-content">
             <h2>Name your pet</h2>
-            <input type="text" id="petName" placeholder="Enter pet name" maxlength="20">
+            <label for="petName"></label><input type="text" id="petName" placeholder="Enter pet name" maxlength="20">
             <button id="startGame">Start Game</button>
         </div>
     </div>
@@ -26,11 +25,12 @@
             <div>
                 <h1>Name</h1>
                 <div class="box">
-                    <img src="creaturenutre.svg" alt="Happy face made of spiral eyes and a smile." id="petImage" loading="lazy">
+                    <img alt="Happy face made of spiral eyes and a smile." id="petImage" loading="lazy"
+                         src="creaturenutre.svg">
                 </div>
                 <div class="box">
                     <div id="headOrTailGame" style="display: none;">
-                        <img src="coinhead.png" id="resultIMG">
+                        <img src="coinhead.png" id="resultIMG" alt="A yellow coin with a head on it.">
                         <p id="resultText"></p>
                         <div>
                             <button id="btnPH">Head</button>
@@ -72,7 +72,7 @@
             <h3>How to Play</h3>
             <ul>
                 <li>Feed your pet regularly to keep it healthy</li>
-                <li>Feeding costs 5 coins each time</li>
+                <li>Feeding costs five coins each time</li>
                 <li>Earn coins by playing the Head or Tails mini-game</li>
                 <li>You can let your pet sleep. It also pauses hunger</li>
                 <li>Your pet will regain health while sleeping enough</li>

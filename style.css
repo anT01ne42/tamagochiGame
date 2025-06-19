@@ -1,5 +1,6 @@
 * {
-    font-family: "Winky Rough", sans-serif;
+    font-family: sans-serif;
+    font-weight: 500;
 }
 
 html {
@@ -65,9 +66,9 @@ main {
 }
 
 .winky-rough {
-    font-family: "Winky Rough", sans-serif;
+    font-family: sans-serif;
     font-optical-sizing: auto;
-    font-weight: 500;
+    font-weight: 600;
     font-style: normal;
 }
 
@@ -266,7 +267,7 @@ h1 {
     border-radius: 5px;
     font-weight: bold;
     font-size: 16px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 #tutorialPanel {
